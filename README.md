@@ -1,7 +1,7 @@
 ZUTI_MATRICOLA - LINGUAGGIO ABAP
-🎯 Finalità del Report
-Il report nasce con l'obiettivo di individuare le anomalie nel sistema SAP IS-U, specificamente per identificare gli impianti che hanno apparecchiature ancora associate (montate) nonostante queste risultino in stato DISP (Disponibile).
-📊 Logica di Estrazione
+🎯 Finalità del Report  
+Il report nasce con l'obiettivo di individuare le anomalie nel sistema SAP IS-U, specificamente per identificare gli impianti che hanno apparecchiature ancora associate (montate) nonostante queste risultino in stato DISP (Disponibile).  
+📊 Logica di Estrazione  
 Il programma segue un flusso logico suddiviso in tre fasi principali:
 
     Analisi Anagrafica (Tabella V_EGER)
@@ -15,7 +15,7 @@ Il programma segue un flusso logico suddiviso in tre fasi principali:
         Utilizzo del N. Logico Apparecchiatura per interrogare la tabella.
         Verifica della fine validità per confermare le apparecchiature che risultano ancora associate a un impianto.
 
-📋 Output Finale
+📋 Output Finale  
 Il report produce una griglia ALV con le seguenti colonne:
 
     Equipment

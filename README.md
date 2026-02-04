@@ -1,19 +1,25 @@
-*&---------------------------------------------------------------------*
-*& Report ZUTI_MATRICOLA
-*&---------------------------------------------------------------------*
-*&
-*&---------------------------------------------------------------------*
+ZUTI_MATRICOLA
+🎯 Finalità del Report
+Il report nasce con l'obiettivo di individuare le anomalie nel sistema SAP IS-U, specificamente per identificare gli impianti che hanno apparecchiature ancora associate (montate) nonostante queste risultino in stato DISP (Disponibile).
+📊 Logica di Estrazione
+Il programma segue un flusso logico suddiviso in tre fasi principali:
 
-* FINALITA' DI QUESTO REPORT -> vedere gli impianti che hanno apparecchiature montate ma in stato DISP.
+    Analisi Anagrafica (Tabella V_EGER)
+        Viene applicato un vincolo sulla fine validità al 31.12.9999.
+        Viene estratto il N. Logico dell'Apparecchiatura (LOGIKNR) per ogni dispositivo.
+    Verifica dello Stato (Tabella JEST)
+        Inizialmente prevista tramite la funzione BAPI_EQUI_GETSTATUS.
+        Ottimizzazione: Poiché la BAPI risulta lenta nell'elaborazione di grandi moli di dati (488.000 record), è stata implementata una SELECT massiva sulla tabella JEST.
+        Viene ricercato lo stato DISP tramite il codice interno I0099.
+    Incrocio Dati Impianto (Tabella EASTL)
+        Utilizzo del N. Logico Apparecchiatura per interrogare la tabella.
+        Verifica della fine validità per confermare le apparecchiature che risultano ancora associate a un impianto.
 
-*- V_EGER (TABELLA) con vincolo fine validità 31.12.9999 -> mi prendo il n.log.apparecchiatura
-*- BAPI_EQUI_GETSTATUS (FUNZIONE) -> inserire equipment e LANGUAGE_ISO = IT -> ottengo lo status (a noi interessa lo stato DISP)
-*- BAPI_EQUI_GESTATUS essendo lenta verrà utilizzata una select massiva su jest
-*- EASTL (TABELLA) -> in cui inserire il n.log.apparecchiatura e fine validità per i disp trovati.
-*
-*---- output finale report colonne -----
-*- equipment
-*- num. di serie
-*- codice materiale
-*- n.log.apparecchiatura
-*- impianto
+📋 Output Finale
+Il report produce una griglia ALV con le seguenti colonne:
+
+    Equipment
+    Num. di Serie (Matricola)
+    Codice Materiale
+    N. Log. Apparecchiatura
+    Impianto (ANLAGE)

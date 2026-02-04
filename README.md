@@ -1,4 +1,4 @@
-ZUTI_MATRICOLA
+ZUTI_MATRICOLA - LINGUAGGIO ABAP
 🎯 Finalità del Report
 Il report nasce con l'obiettivo di individuare le anomalie nel sistema SAP IS-U, specificamente per identificare gli impianti che hanno apparecchiature ancora associate (montate) nonostante queste risultino in stato DISP (Disponibile).
 📊 Logica di Estrazione
